@@ -3,7 +3,7 @@
 --     URL_ID VARCHAR(255) PRIMARY KEY
 -- );
 
-CREATE TABLE URL_TABLE (
+CREATE TABLE IF NOT EXISTS URL_TABLE (
     id serial NOT NULL PRIMARY KEY,
     URL text,
     URL_ID character(5)

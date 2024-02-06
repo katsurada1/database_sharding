@@ -10,22 +10,22 @@ hr.add('5434');
 
 const clients = {
   5432: new Client({
-    host: 'husseinmac',
+    host: 'db1',
     port: '5432',
     user: 'postgres',
     password: 'postgres',
     database: 'postgres',
   }),
   5433: new Client({
-    host: 'husseinmac',
-    port: '5433',
+    host: 'db2',
+    port: '5432',
     user: 'postgres',
     password: 'postgres',
     database: 'postgres',
   }),
   5434: new Client({
-    host: 'husseinmac',
-    port: '5434',
+    host: 'db3',
+    port: '5432',
     user: 'postgres',
     password: 'postgres',
     database: 'postgres',
@@ -59,9 +59,7 @@ app.post('/', async (req, res) => {
   const url = req.query.url;
   const hash = crypto.createHash('sha256').update(url).digest('base64');
   const urlId = hash.substr(0, 5);
-
   const server = hr.get(urlId);
-
   await clients[server].query(
     'INSERT INTO URL_TABLE (URL, URL_ID) VALUES ($1,$2)',
     [url, urlId]
